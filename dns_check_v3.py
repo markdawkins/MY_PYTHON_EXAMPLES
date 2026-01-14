@@ -121,8 +121,8 @@ def main():
     
     # Nameservers to test against
     dns_servers = {
-        'ns1': '10.212.6.64',
-        'ns9': '10.211.134.47'
+        'ns1': '10.x.x.x',
+        'ns9': '10.x.x.x'
     }
     # ===== END CONFIGURATION =====
 
