@@ -7,7 +7,7 @@ import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 dnac = {
-    "host": "10.14.16.5",
+    "host": "10.x.x.x",
     "username": "YOUR_USERNAME",
     "password": "YOUR_PASSWORD",
     "version": "v1"
