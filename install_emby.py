@@ -36,8 +36,9 @@ def run_remote_command(ssh_client, command, sudo_password=None, description=""):
 
     stdin, stdout, stderr = ssh_client.exec_command(command, get_pty=True)
 
-    # If the command uses sudo -S, feed the sudo password in.
-    if sudo_password and command.strip().startswith("sudo"):
+    # If the command invokes sudo -S anywhere (not just at the very start,
+    # e.g. "echo x | sudo -S y"), feed the sudo password in immediately.
+    if sudo_password and "sudo" in command:
         stdin.write(sudo_password + "\n")
         stdin.flush()
 
@@ -108,7 +109,7 @@ def main():
         )
         run_remote_command(
             ssh,
-            "echo 'emby:go' | sudo -S chpasswd",
+            "sudo -S bash -c \"echo 'emby:go' | chpasswd\"",
             sudo_password=ssh_password,
             description="Setting password for user 'emby'",
         )
